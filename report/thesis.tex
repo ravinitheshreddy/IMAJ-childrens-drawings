@@ -1,0 +1,191 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% EPFL report package, main thesis file
+% Goal: provide formatting for theses and project reports
+% Author: Mathias Payer <mathias.payer@epfl.ch>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,11pt,oneside]{report}
+% Options: MScThesis, BScThesis, MScProject, BScProject
+\usepackage[MScThesis]{EPFLreport}
+\usepackage{layout}
+\usepackage{xspace}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{array}
+\newcolumntype{H}{>{\setbox0=\hbox\bgroup}c<{\egroup}@{}}
+\providecommand{\keywords}[1]{\textbf{\textit{Keywords---}} #1}
+\providecommand{\keywordsfrench}[1]{\textbf{\textit{Mots-clés---}} #1}
+
+\newcommand{\includegraphicsdpi}[3]{
+    \pdfimageresolution=#1  % Change the dpi of images
+    \includegraphics[#2]{#3}
+    \pdfimageresolution=72  % Change it back to the default
+}
+
+% \setcounter{secnumdepth}{3}
+\title{Searching for visual patterns in a children's drawings collection}
+\author{Ravinithesh Annapureddy}
+\adviser{Prof. Frédéric Kaplan}
+\supervisor{Dr. Julien René Pierre Fageot}
+% \coadviser{}
+\expert{Prof. Aurélien Bénel}
+
+\dedication{
+
+\cleardoublepage
+\thispagestyle{empty}
+
+
+\vspace*{3cm}
+
+\begin{raggedleft}
+    	Cultivation of mind should be \\
+	the ultimate aim of human existence.\\
+     ---  B. R. Ambedkar\\
+\end{raggedleft}
+
+\vspace{4cm}
+
+\begin{center}
+    To all the beautiful minds\dots
+\end{center}
+
+}
+\acknowledgments{
+First of all, I am deeply indebted to my supervisors, Frédéric Kaplan and Julien Fageot, for their guidance and discussion and for supporting me throughout the project.
+
+I would like to thank Carolina Suarez and her team at the IMAJ-UNESCO center for providing access to their digitized drawings collection, without which the project would not have been in its present form. Thanks again to Julien for arranging and making this project possible.
+
+I am particularly grateful to Ludovica, who allowed me to use some parts of her work and the numerous coffee breaks.
+
+I cannot thank you enough, Jithendra, for all of your unconditional support and constant encouragement.
+
+Last but not least, I am grateful to my parents for their support and solace. Thank you, S.G., for being there.
+}
+
+\begin{document}
+
+\maketitle
+\makededication
+
+\makeacks
+
+\begin{abstract}
+
+The success of large-scale digitization projects at museums, archives, and libraries is pushing other cultural institutions to embrace digitization to preserve their collections. By juxtaposing digital tools with digitized collections, it is now possible to study these cultural objects at a previously unknown scale. This thesis is the first attempt to explore a recently digitized children's drawings collection while developing a system to identify patterns in them linked with popular cultural objects. Artists, as young as three and as old as 25, created nearly 90,000 drawings in the span of three decades from most countries in the world. The preliminary examination unveils that these drawings mirror a solid cultural ethos by using specific iconographic subjects, objects, and colors, and the distinction between children of different parts of the globe is visible in their works. These factors not only make the dataset distinct from other sketch datasets but place it distantly from them in terms of size and multifariousness of creations and the creators. The essential and another dimension of the project is matching the drawings and the popular cultural objects they represent. A deep learning model that learns a metric to rank the visual similarity between the images is used to identify the drawing-artwork pairs. Though the networks developed for image classification perform inadequately for the matching task, networks used for pattern matching in paintings show good performance. Fine-tuning the models increases the performance drastically. The primary outcomes of this work are (1) systems trained with a few methodically chosen examples perform comparably to the systems trained on thousands of generic samples and (2) using drawings enriched by adding generic effects of watercolor, oil painting, pencil sketch, and texturizing mitigates the situation of network learning examples by heart. 
+\end{abstract}
+
+\vspace{1em}
+
+\keywords{digitization, drawings, child art, visual similarity, pattern search, artworks, deep learning, transfer learning, style augmentation}
+
+\begin{frenchabstract}
+Le succès des projets de numérisation à grande échelle dans les musées, les archives et les bibliothèques pousse d'autres institutions culturelles à adopter la numérisation pour préserver leurs collections. En juxtaposant les outils numériques aux collections numérisées, il est désormais possible d'étudier ces objets culturels à une échelle jusqu'alors inconnue. Cette thèse est la première tentative d'explorer une collection de dessins d'enfants récemment numérisée tout en développant un système permettant d'identifier dans ces dessins des modèles liés à des objets culturels populaires. Des artistes, âgés de trois ans à 25 ans, ont créé près de 90 000 dessins en l'espace de trois décennies, provenant de la plupart des pays du monde. L'examen préliminaire dévoile que ces dessins reflètent un ethos culturel solide en utilisant des sujets iconographiques, des objets et des couleurs spécifiques, et la distinction entre les enfants de différentes parties du globe est visible dans leurs ceuvres. Ces facteurs non seulement rendent l'ensemble de données distinct des autres ensembles de croquis, mais le placent loin d'eux en termes de taille et de multiplicité des créations et des créateurs. Une autre dimension essentielle du projet consiste à faire correspondre les dessins et les objets culturels populaires qu'ils représentent. Un modèle d'apprentissage profond qui apprend une métrique pour classer la similarité visuelle entre les images est utilisé pour identifier les paires dessin-objet. Bien que les réseaux développés pour la classification d'images ne soient pas assez performants pour la tâche de mise en correspondance, les réseaux utilisés pour la correspondance de motifs dans les peintures montrent de bonnes performances. Le réglage fin des modèles permet d'augmenter considérablement les performances. Les principaux résultats de ce travail sont (1) les systèmes formés avec quelques exemples choisis méthodiquement ont des performances comparables à celles des systèmes formés sur des milliers d'échantillons génériques et (2) l'utilisation de dessins enrichis par l'ajout d'effets génériques d'aquarelle, de peinture à l'huile, de croquis au crayon et de texturation atténue la situation du réseau qui apprend des exemples par cœur.
+\end{frenchabstract}
+
+\vspace{1em}
+
+\keywordsfrench{numérisation, dessins, art enfantin, similarité visuelle, recherche de motifs, œuvres d'art, apprentissage profond, apprentissage par transfert, augmentation de style}
+
+\maketoc
+\cleardoublepage
+
+% \pagestyle{fancy}
+% \renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
+% \renewcommand{\sectionmark}[1]{ \markright{#1}{#1} }
+% \fancyhead[R]{\rightmark}
+% \fancyhead[L]{\chaptername\ \thechapter\ --\ \leftmark}
+% \renewcommand{\headrulewidth}{2pt}
+
+\pagestyle{headings}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhead[R]{\rightmark}
+\fancyhead[L]{\chaptername\ \thechapter\ --\ \leftmark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}\label{chap:1:Intro}
+%%%%%%%%%%%%%%%%%%%%%%
+\subfile{chapters/Introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Background and Previous Works}\label{chap:2:Background}
+%%%%%%%%%%%%%%%%%%%%%%
+\subfile{chapters/Background}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Children's Drawings Dataset}\label{chap:3:AboutDrawings}
+%%%%%%%%%%%%%%%%%%%%%%
+\subfile{chapters/Drawings}
+
+
+%%%%%%%%%%%%%%%%%%%%
+\chapter{Formulation and Methods}
+%%%%%%%%%%%%%%%%%%%%
+\subfile{chapters/ProblemFormulation}
+
+%%%%%%%%%%%%%%%%
+\chapter{Experiments and Results}
+%%%%%%%%%%%%%%%%
+\subfile{chapters/Experiments}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Discussion}\label{chap:6:Discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subfile{chapters/Discussion}
+
+%%%%%%%%%%%%%%%%%%%%
+\chapter{Conclusion}
+% \addcontentsline{toc}{chapter}{Conclusion}
+% \fancyhf{}
+% \renewcommand{\headrulewidth}{0pt}
+\subfile{chapters/Conclusion}
+%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\fancypagestyle{plain}{% new plain style
+  \fancyhf{}% Clear header/footer
+  \fancyfoot[C]{\thepage}% Right footer
+  \renewcommand{\headrulewidth}{0pt}
+}
+\pagestyle{plain}
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\fancyfoot[C]{\thepage}
+\printbibliography
+
+% Appendices are optional
+\appendix
+\chapter{Age and Category wise drawings}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subfile{chapters/Appendix-dataset}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Discovered Drawing-Artwork Pairs}
+\subfile{chapters/Discovered_pairs}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \chapter{Visualization Interface}\label{appen:B:viz-tool}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% In case you ever need an (optional) appendix.
+%
+% You need the following items:
+% \begin{itemize}
+% \item A box
+% \item Crayons
+% \item A self-aware 5-year old
+% \end{itemize}
+% \layout*
+\end{document}
