@@ -39,7 +39,7 @@ The success of large-scale digitization projects at museums, archives, and libra
 - `web_annotations/`: Contains the Html, CSS and JavaScript files used to visualise the artworks similar to drawings.
   - `server.py`: Contains the main script to launch the web server. See Readme in the folder on how to use.
 - `data/`: Contains the (some) data required to execute the scripts and notebooks. Large files and folders are stored separately.
-  - `embeddings/`: Contains the pre-computed embeddings on the artworks and drawings using pre-trained weights, fine-tuned weights and weights of the network trained to identify patterns in artworks. They are stored in a npy file which stores an array with each sub element of the array containing the id and the embedding.
+  - `embeddings/`: Contains the pre-computed embeddings on the artworks and drawings using pre-trained weights, fine-tuned weights and weights of the network trained to identify patterns in artworks. They are stored in a npy file which stores an array with each sub element of the array containing the id and the embedding. ```This data is stored separately on the DHLAB NAS.```
     - `drawings_14-25_resnext-101_avg_280_epoch_0_initial.npy`: Contains the embeddings of drawings of children aged 14-25 computed using pre-trained weights of ResNeXt-101 model trained on the ImageNet with average pooling and 280 image resolution.
     - `drawings_learning_resnet101_avg_280_epoch_0_initial.npy`: Contains the embeddings of subset drawings from `drawings_14-25_resnext-101_avg_280_epoch_0_initial.npy` that are used in the training of the model.
     - `drawings_14-25_resnext-101_avg_280_ft_aug.npy`: Contains the embeddings of drawings of children aged 14-25 computed using the fine tuned ResNeXt-101 model trained with style augmented examples.
@@ -58,7 +58,7 @@ The success of large-scale digitization projects at museums, archives, and libra
     - `famous_artworks_resnext-101_avg_280_clus_replica.npy`: Contains the embeddings of famous artworks (BAAT dataset) computed using the pre-trained weights of ResNeXt-101 model trained for patterns clustering in artworks.
     - `famous_artworks_resnext-101_avg_280_mini_replica_ft_aug.npy`: Contains the embeddings of famous artworks (BAAT dataset) computed using the fine tuned weights of ResNeXt-101 model trained for patterns recognition in artworks using style augmented drawings.
     - `famous_artworks_resnext-101_avg_280_clus_replica_ft_aug.npy`: Contains the embeddings of famous artworks (BAAT dataset) computed using the pre-trained weights of ResNeXt-101 model trained for patterns clustering in artworks using style augmented drawings.
-  - `image_data/`: Contains the drawings and artworks
+  - `image_data/`: Contains the drawings and artworks. ```This data is stored separately on the DHLAB NAS.```
     - `drawings/`: Train_01 to Train_06 folders contain the scans of drawings as provided by IMAJ. Train_00 contains the style transferred drawings.
     -`famous_artworks/`: Contains the artworks of famous artists per folder, others folder contains images added additionally to BAAT dataset.
   - `manual_annotation/`:
@@ -67,6 +67,7 @@ The success of large-scale digitization projects at museums, archives, and libra
   - `model_learning/`: Contains the files used in training the model
     - `learning_rates/`, `losses/`, `results/`, `scores/`, `triplets/`, `weights/`: The folders are used to saved the respective data during the training process.
     - `drawing_artwork_pair_train_test_split.csv` and 10 other versions of it contains the data split into train, validation and test sets. Each CSV contains the 5 columns namely the id for the drawing artwork pair, the id of the drawing, id of the artwork, the set of the pair (train, test or validation) and the parent drawing id.
+    - `comparision/`: Contains the scores of evaluating all the models of the 11 datasplits.
   - `text_data/`: Contains the metadata files and id to path mapping.
 - `report/`: Contains the tex and files used in generating the thesis document.
 
