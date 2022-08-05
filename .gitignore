@@ -205,3 +205,4 @@ $RECYCLE.BIN/
 
 .history/
 data/embeddings/*
+data/image_data/*/*
