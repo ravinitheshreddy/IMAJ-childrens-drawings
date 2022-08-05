@@ -1,0 +1,78 @@
+{% extends "base.html" %} {% block title %}annotate{%endblock%} {% block scripts %} {%endblock%} {% block body %}
+
+
+<header>
+    <div class="col-12 mt-2 mb-3 border-bottom">
+        <h1>Get similar images and confirm the similarity</h1>
+    </div>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 border-right">
+            <div class="sticky-top">
+
+                <form action="#" method="POST" class="mb-5 mt-3">
+                    <h3>Search with UID</h3>
+
+                    <div class="form-group" id="text_form">
+                        <input class="form-control" placeholder="Enter UID of the image" name="item" value="{{item}}"
+                            required />
+                    </div>
+
+                    <button id="submit_text_search" type="submit" name="submit" value="text_search"
+                        class="btn btn-primary mt-2">Search</button>
+                </form>
+
+
+                <form action="#" method="POST" enctype="multipart/form-data" id="random_search_form">
+                    <div class="form-group">
+                        <h3>Random Search</h3>
+                    </div>
+
+                    <button type="submit" name="submit" value="random_search" class="btn btn-primary mt-3">Random
+                        Search</button>
+                </form>
+
+                <img class="mt-3" id="uploaded_image" style="width:100%"> {% if uploaded_image_url|length %}
+                <h6 class="mt-3">Comparison image</h6>
+                <p>{{item}}</p>
+                <img id="compared_image" style="width:90%" src="{{uploaded_image_url}}"> {%endif%}
+
+            </div>
+        </div>
+
+
+
+        <div class="col-9">
+            {% if results|length > 0%}
+            <form action="#" method="POST" class="mb-5 mt-3">
+                <div class="form-group" id="similarity_form">
+                    <div class="row">
+                        {% for name_and_links in results %} {% set box_id = 'ckb' ~ loop.index %}
+                        <!-- <div class="col-md-3"> -->
+                        <div class="custom-control custom-checkbox image-checkbox col-2">
+                            <input type="checkbox" class="custom-control-input" id="{{box_id}}" name="{{box_id}}"
+                                value="{{name_and_links[0]}}">
+                            <label class="custom-control-label" for="{{box_id}}">
+                                <p>{{name_and_links[0]}}, {{name_and_links[2]}}</p>
+                                <img src="{{name_and_links[1]}}" alt="#" class="img-fluid img-thumbnail" width="300">
+                            </label>
+                        </div>
+
+                        <!-- </div> -->
+                        {% endfor %}
+                    </div>
+
+                    <input id="uid_a" name="UID_A" style='visibility: hidden;' type='text' value={{item}}>
+                    <button id="submit_similar_imges" type="submit" name="submit" value="similar_images"
+                        class="btn btn-primary mt-2">Confirm
+                        Similar Images</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
