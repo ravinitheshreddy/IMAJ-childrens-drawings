@@ -1,4 +1,4 @@
-Flask==2.1.2
+Flask==2.3.2
 ipywidgets==7.7.0
 jupyterlab==3.3.2
 jupyterlab-widgets==1.1.0
